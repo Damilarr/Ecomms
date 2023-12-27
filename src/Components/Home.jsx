@@ -61,63 +61,61 @@ export const HeroSection = () => {
 };
 export const Collection = () => {
   const { data, isLoading, error } = useGetAllProductsQuery();
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+  if (error) {
+    return <p>An Error Occured {error.message} try refreshing</p>;
+  }
   return (
     <section className="py-14 flex flex-col space-y-6 px-4 sm:px-6 md:px-10 lg:px-14 relative">
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>An Error Occured {error}</p>
-      ) : (
-        <>
-          <img
-            src={ellipse2}
-            alt="ellipse2"
-            className="absolute   -top-[35rem] right-0"
-          />
-          <div className="flex flex-col w-3/4 z-10">
-            <h2 className="lg:text-6xl font-bold md:text-5xl sm:text-4xl text-3xl text-center md:text-left relative">
-              Stylish Collection Of Furniture
-            </h2>
-            <p className="text-gray text-base md:text-2xl mt-0 md:text-left text-center">
-              Stay updated with our information and engaging blog posts about
-              modern Furniture and Fashion on the industry
-            </p>
-          </div>
-          <div className="flex space-x-3 flex-wrap z-10 space-y-3">
-            <button className="bg-black px-5 py-2 rounded-l-full rounded-r-full text-white  outline-none border-none">
-              All Furniture
-            </button>
-            <button className="text-black px-5 py-2 rounded-l-full rounded-r-full bg-[#CACED5]  outline-none border-none">
-              Living Room
-            </button>
-            <button className="text-black px-5 py-2 rounded-l-full rounded-r-full bg-[#CACED5]  outline-none border-none">
-              Home Office
-            </button>
-            <button className="text-black px-5 py-2 rounded-l-full rounded-r-full bg-[#CACED5]  outline-none border-none">
-              Bedroom
-            </button>
-            <button className="text-black px-5 py-2 rounded-l-full rounded-r-full bg-[#CACED5]  outline-none border-none">
-              Dining Table
-            </button>
-            <button className="text-black px-5 py-2 rounded-l-full rounded-r-full bg-[#CACED5]  outline-none border-none">
-              More
-            </button>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 z-10 md:grid-cols-3 lg:grid-cols-4 gap-5">
-            {data.slice(0, 8).map((product) => {
-              return (
-                <Items
-                  title={product.title}
-                  price={product.price}
-                  img={product.image}
-                  key={product.title}
-                  _id={product._id}
-                />
-              );
-            })}
-          </div>
-        </>
-      )}
+      <img
+        src={ellipse2}
+        alt="ellipse2"
+        className="absolute   -top-[35rem] right-0"
+      />
+      <div className="flex flex-col w-3/4 z-10">
+        <h2 className="lg:text-6xl font-bold md:text-5xl sm:text-4xl text-3xl text-center md:text-left relative">
+          Stylish Collection Of Furniture
+        </h2>
+        <p className="text-gray text-base md:text-2xl mt-0 md:text-left text-center">
+          Stay updated with our information and engaging blog posts about modern
+          Furniture and Fashion on the industry
+        </p>
+      </div>
+      <div className="flex space-x-3 flex-wrap z-10 space-y-3">
+        <button className="bg-black px-5 py-2 rounded-l-full rounded-r-full text-white  outline-none border-none">
+          All Furniture
+        </button>
+        <button className="text-black px-5 py-2 rounded-l-full rounded-r-full bg-[#CACED5]  outline-none border-none">
+          Living Room
+        </button>
+        <button className="text-black px-5 py-2 rounded-l-full rounded-r-full bg-[#CACED5]  outline-none border-none">
+          Home Office
+        </button>
+        <button className="text-black px-5 py-2 rounded-l-full rounded-r-full bg-[#CACED5]  outline-none border-none">
+          Bedroom
+        </button>
+        <button className="text-black px-5 py-2 rounded-l-full rounded-r-full bg-[#CACED5]  outline-none border-none">
+          Dining Table
+        </button>
+        <button className="text-black px-5 py-2 rounded-l-full rounded-r-full bg-[#CACED5]  outline-none border-none">
+          More
+        </button>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 z-10 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        {data.slice(0, 8).map((product) => {
+          return (
+            <Items
+              title={product.title}
+              price={product.price}
+              img={product.image}
+              key={product.title}
+              _id={product._id}
+            />
+          );
+        })}
+      </div>
     </section>
   );
 };
