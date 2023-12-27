@@ -12,10 +12,10 @@ import SimilarItems from "./SimilarItems";
 import { UseGlobalContext } from "./Context";
 
 const Cart = () => {
-  const { isauthenticated, setIsAuthenticated } = UseGlobalContext();
+  const { isAuthenticated, setIsAuthenticated } = UseGlobalContext();
   const navigate = useNavigate();
   const handleNavigate = () => {
-    if (!isauthenticated) {
+    if (!isAuthenticated) {
       navigate("/login");
     } else {
       navigate("/checkout");

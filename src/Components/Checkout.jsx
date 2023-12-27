@@ -10,6 +10,7 @@ import {
 } from "../features/cartSlice";
 import { Link } from "react-router-dom";
 import PaystackPop from "@paystack/inline-js";
+import { toast } from "react-toastify";
 
 const Checkout = () => {
   const [address, setAddress] = useState({
@@ -41,6 +42,10 @@ const Checkout = () => {
     setAddress({ ...address, [e.target.name]: e.target.value });
   };
   const makePayment = (e) => {
+    if (!userDetails.email || !userDetails.firstName || !userDetails.lastName) {
+      toast.error("Please fill in your details");
+      return;
+    }
     e.preventDefault();
     const paystack = new PaystackPop();
     paystack.newTransaction({
@@ -49,6 +54,14 @@ const Checkout = () => {
       email: userDetails.email,
       firstname: userDetails.firstName,
       lastname: userDetails.lastName,
+      onSuccess(transaction) {
+        toast.success(
+          `Payment Successful--transaction Ref ${transaction.reference}`
+        );
+      },
+      onCancel() {
+        toast.info(`Transaction Cancelled`);
+      },
     });
   };
   useEffect(() => {

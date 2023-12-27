@@ -19,9 +19,7 @@ const Login = () => {
     toast.error(`${error.message}`);
   };
   const [loginData, setLoginData] = useState(
-    sessionStorage.getItem("userId")
-      ? JSON.parse(sessionStorage.getItem("userId"))
-      : null
+    sessionStorage.getItem("userId") ? sessionStorage.getItem("userId") : null
   );
   const handleSignIn = async (response) => {
     try {
@@ -30,12 +28,10 @@ const Login = () => {
       });
       const data = (await res).data;
       setLoginData(data);
-      console.log(data);
-      sessionStorage.setItem("userId", JSON.stringify(data._id));
+      sessionStorage.setItem("userId", data._id);
       setIsAuthenticated(true);
       sessionStorage.setItem("isAuthenticated", true);
       updateUserCart(data._id, JSON.parse(localStorage.getItem("cartItems")));
-      sessionStorage.setItem("userId", data._id);
       toast.success(`Signed In as ${data.name}`);
       navigate("/checkout");
     } catch (error) {
@@ -55,8 +51,10 @@ const Login = () => {
     }
   };
   return (
-    <section className="py-14 section-padding">
-      <h2>Google Login</h2>
+    <section className="py-14 bg-ash section-padding">
+      <h2 className=" py-5 lg:text-6xl font-bold md:text-5xl sm:text-4xl text-3xl text-center md:text-left relative">
+        Sign in with Google
+      </h2>
       <GoogleLogin onSuccess={handleSignIn} onError={errorOutput} />
     </section>
   );
