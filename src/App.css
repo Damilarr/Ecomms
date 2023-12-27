@@ -1,0 +1,7 @@
+body {
+  @apply font-sansation;
+}
+@font-face {
+  font-family: sansation;
+  src: url(../src/assets/sansation/Sansation-Regular.ttf);
+}
