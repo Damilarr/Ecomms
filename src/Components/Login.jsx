@@ -40,12 +40,10 @@ const Login = () => {
   };
   const updateUserCart = async (userId, products) => {
     try {
-      const response = await axios.post(`${url}/user/addToCart`, {
+      const response = await axios.post(`${url}/user/updateCart`, {
         userId,
         products,
       });
-
-      console.log(response.data); // Log the response from the backend
     } catch (error) {
       toast.error(`${error.message}`);
     }

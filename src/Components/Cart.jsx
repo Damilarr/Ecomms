@@ -40,9 +40,16 @@ const Cart = () => {
       <h2 className="headerText">Your Shopping Cart</h2>
       <BreadCrumbs />
       {cart.cartItems.length === 0 ? (
-        <div>
-          <p>Your Cart is currently empty.</p>
-          <Link to={"/shop-now"}>Continue Shopping</Link>
+        <div className="space-y-5 flex flex-col">
+          <p className="md:text-2xl sm:text-xl text-lg">
+            Your Cart is currently empty.
+          </p>
+          <Link
+            to={"/shop-now"}
+            className="bg-black px-3 py-1 text-base w-fit text-center rounded-lg text-white"
+          >
+            Continue Shopping
+          </Link>
         </div>
       ) : (
         <section className="flex flex-col lg:flex-row lg:space-x-5 justify-between lg:items-start">
