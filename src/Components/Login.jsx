@@ -40,7 +40,7 @@ const Login = () => {
   };
   const updateUserCart = async (userId, products) => {
     try {
-      const response = await axios.post(`${url}/user/updateCart`, {
+      const response = await axios.post(`${url}/user/addToCart`, {
         userId,
         products,
       });
